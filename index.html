@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="" type="" href="" />
+  <link rel="stylesheet" href="./style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mtools ADM</title>
+</head>
+
+<body>
+  <main>
+    <section class="main-section">
+      <div>
+        <h1 onclick="showValue()">Cadastro de alunos - Mtools Adm</h1>
+        <div class="cadastro-container">
+          <section class="aluno-section">
+            <form action="" method="post" class="cad-form">
+              <label for="nome">
+                <input type="text" id="nome" title="nome" placeholder="Preencha o nome do aluno" class="input-form">
+              </label>
+              <label for="idade">
+                <input type="text" id="idade" title="idade" placeholder="Preencha a idade do aluno" class="input-form">
+              </label>
+              <label for="telefone">
+                <input type="tel" id="telefone" title="telefone" placeholder="Preencha o telefone do aluno"
+                  class="input-form">
+              </label>
+              <label for="email">
+                <input type="email" id="email" title="email" placeholder="Preencha o email do aluno" class="input-form">
+              </label>
+              <label for="datanasc">
+                <input type="date" id="datanasc" title="datanasc" placeholder="Preencha a data de nascimento do aluno"
+                  class="input-form">
+              </label>
+            </form>
+          </section>
+          <section class="cursos-section">
+            <div class="cursos-section">
+              <label for="cursos">Selecione um curso:</label>
+              <select name="cursos" id="cursos" class="option-style">
+                <option value="violao">Violão</option>
+                <option value="guitarra">Guitarra</option>
+                <option value="contrabaixo">Contrabaixo</option>
+                <option value="teclado">Teclado</option>
+                <option value="canto">Canto</option>
+              </select>
+              </label>
+              <label for="diasemana">Selecione um dia da semana:</label>
+              <select name="diasemana" id="diasemana" class="option-style">
+                <option value="segunda">Segunda-feira</option>
+                <option value="terca">Terça-feira</option>
+                <option value="quarta">Quarta-feira</option>
+              </select>
+              </label>
+              <label for="diasemana">Selecione um horário:</label>
+              <select class="option-style">
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+              </select>
+              </label>
+            </div>
+          </section>
+        </div>
+        <button class="cad-btn">ENVIAR</button>
+      </div>
+    </section>
+  </main>
+  <script src="main.js"></script>
+</body>
+
+</html>
