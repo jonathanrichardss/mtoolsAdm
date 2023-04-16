@@ -96,6 +96,13 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.table-alunos {
+  width: 100vw;
+  margin: 10px;
+  padding: 5px;
+  table-layout: auto;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
