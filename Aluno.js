@@ -1,4 +1,18 @@
+
+
 class Aluno {
+
+        id;
+        nome;
+        sexo;
+        data_nasc;
+        email;
+        telefone;
+        id_ativo;
+        data_matricula;
+        id_materia;
+        curso;
+
 
     constructor(id,
         nome,
@@ -8,7 +22,8 @@ class Aluno {
         telefone,
         id_ativo,
         data_matricula,
-        id_materia) {
+        id_materia,
+        curso) {
 
         this.id = id;
         this.nome = nome;
@@ -20,6 +35,7 @@ class Aluno {
         this.id_ativo = id_ativo;
         this.data_matricula = data_matricula;
         this.id_materia = id_materia;
+        this.curso = curso;
     }
 
     criarPessoa() { 
@@ -34,7 +50,8 @@ class Aluno {
             telefoneAluno:  this.telefone,
             idAtivoAluno:  this.id_ativo,
             dataMatriculaAluno: this.data_matricula,
-            idMateriaAluno:  this.id_materia
+            idMateriaAluno:  this.id_materia,
+            curso: this.curso
         })
     
         }
@@ -43,6 +60,9 @@ class Aluno {
             const obj = this.criarPessoa();
             return JSON.stringify(obj)
         }
+
+    
+
 
 }
 

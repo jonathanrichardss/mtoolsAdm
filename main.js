@@ -6,14 +6,108 @@ export let a = {};
 
 export var alunos = document.getElementById('table-alunos');
 
+function setAlunos(obj) {
+  obj.nome = document.getElementById('nome').value;
+  obj.data_nasc = document.getElementById('datanasc').value;
+  obj.telefone = document.getElementById('telefone').value;
+  obj.endereco = document.getElementById('endereco').value;
+  obj.email = document.getElementById('email').value;
+
+  let cursos = obj.id_materia = document.getElementById('cursos').value;
+  let opcoes;
+  switch (cursos) {
+    case 'violao':
+      opcoes = 1
+      break;
+    case 'guitarra':
+      opcoes = 2
+      break;
+    case 'contrabaixo':
+      opcoes = 3
+      break;
+
+    case 'teclado':
+      opcoes = 4
+      break;
+
+    case 'canto':
+      opcoes = 5
+      break;  
+    default:
+        opcoes = null;
+  }
+
+  obj.id_materia = opcoes;
+
+  console.log(opcoes);
+
+  return obj;
+}
+
+function setCurso() {
+
+  let newCursoCad = {
+    idaluno: '',
+    materia: '',
+    diasemana: '',
+    horarioaula: ''
+  };
+
+  let materia = newCursoCad.materia = document.getElementById('cursos').value;
+  newCursoCad.diasemana = document.getElementById('diasemana').value;
+
+  switch (materia) {
+    case 'violao':
+      materia = 1
+      break;
+    case 'guitarra':
+      materia = 2
+      break;
+    case 'contrabaixo':
+      materia = 3
+      break;
+
+    case 'teclado':
+      materia = 4
+      break;
+
+    case 'canto':
+      materia = 5
+      break;
+  }
+
+  newCursoCad.horarioaula = document.getElementById('horarioaula').value;
+
+
+  return newCursoCad;
+}
+
+window.createAlunos = async function createAlunos() {
+  let aluno = new Aluno();
+  let newAluno = setAlunos(aluno);
+  let newCursoAluno = setCurso();
+  newAluno.curso = newCursoAluno;
+
+
+
+  console.log(newAluno);
+  await axios.post('http://localhost:3000/alunos/criar', newAluno);
+}
+
 window.getAlunos = async function getAlunos() {
   await axios.get('http://localhost:3000/alunos')
-  .then(res => {
-   listaAlunos = res.data
-  })
+    .then(res => {
+      listaAlunos = res.data;
+      console.log(res.data)
+      return listaAlunos;
+    })
+  console.log(listaAlunos)
+  await listaTodos(listaAlunos);
+}
 
-   
-  var content = listaAlunos.forEach((e, indice, array) => {
+window.listaTodos = async function listaTodos(lista) {
+
+  lista.forEach((e, indice, array) => {
     var tr = document.createElement('tr');
     let td = document.createElement('td');
     let td_nome = tr.insertCell();
@@ -32,16 +126,13 @@ window.getAlunos = async function getAlunos() {
     td_email.innerText = JSON.stringify(listaAlunos[indice].email).replace(/^"|"$/g, '');
     td_curso.innerText = JSON.stringify(listaAlunos[indice].materia).replace(/^"|"$/g, '');
     td_dia_semana.innerText = JSON.stringify(listaAlunos[indice].dia_semana).replace(/^"|"$/g, '');
-    td_horario.innerText = JSON.stringify(listaAlunos[indice].horario_aula).replace(/^"|"$/g, '').replace('00:00','00');
+    td_horario.innerText = JSON.stringify(listaAlunos[indice].horario_aula).replace(/^"|"$/g, '').replace('00:00', '00');
     tr.appendChild(td);
     alunos.appendChild(tr);
     console.log(array);
   });
-
-  //console.log(listaAlunos);
-  return listaAlunos;
-
 }
+
 
 
 
