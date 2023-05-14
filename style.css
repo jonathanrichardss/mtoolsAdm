@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -96,11 +101,116 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.table-alunos {
+.table {
   width: 100vw;
   margin: 10px;
   padding: 5px;
   table-layout: auto;
+}
+
+.icon {
+}
+
+#close-modal {
+  padding: .6rem 1.2rem;
+  background-color: #e01818;
+  color: #FFF;
+  border: none;
+  border-radius: .25rem;
+  cursor: pointer;
+  opacity: .9;
+  font-size: 1 rem;
+}
+
+#send-modal {
+  padding: .6rem 1.2rem;
+  background-color: #219e6c;
+  color: #FFF;
+  border: none;
+  border-radius: .25rem;
+  cursor: pointer;
+  opacity: .9;
+  font-size: 1 rem;
+  width: 100%;
+  height: 82px;
+}
+
+#fade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 5;
+}
+
+#modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffff;
+  z-index: 10;
+  width: 600px;
+  height: 500px;
+  max-width: 90%;
+  border-radius: 8px;
+}
+
+.modal-hdr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.modal-hdr * {
+  margin: 10px;
+  margin-right: 5px;
+}
+
+#modal-body {
+  margin-bottom: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-body > input {
+
+}
+
+#root-modal-cursos-section {
+  width: 100%;
+}
+
+#modal-cursos-section {
+ 
+}
+
+#modal-middle {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#fade, #modal {
+  transition: .5s;
+  opacity: 1;
+  pointer-events: all;
+}
+
+#modal.hide,
+#fade.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#moda.hide {
+  top: 0;
 }
 
 @media (prefers-color-scheme: light) {
