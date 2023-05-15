@@ -131,8 +131,8 @@ button:focus-visible {
   cursor: pointer;
   opacity: .9;
   font-size: 1 rem;
-  width: 100%;
-  height: 82px;
+  width: 122px;
+  height: 52px;
 }
 
 #fade {
@@ -152,18 +152,24 @@ button:focus-visible {
   transform: translate(-50%, -50%);
   background-color: #ffff;
   z-index: 10;
-  width: 600px;
+  width: 780px;
   height: 500px;
   max-width: 90%;
   border-radius: 8px;
 }
 
+#modal > #send-modal {
+  margin: 10px 50% 0 40%;
+}
+
 .modal-hdr {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 0 14px 0 14px;
   border-bottom: 1px solid #ccc;
   margin-bottom: 0.5rem;
+  padding-top: 0.5rem;
   padding-bottom: 1rem;
 }
 
@@ -175,20 +181,40 @@ button:focus-visible {
 #modal-body {
   margin-bottom: 1px;
   display: flex;
+  width: 100%;
+  margin: 0 auto;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
-.modal-body > input {
-
+#modal-body > label > input {
+  border: 1.5px solid #bbbdc0;
+  opacity: 0.9;
 }
 
 #root-modal-cursos-section {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #modal-cursos-section {
- 
+  min-width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin: -10px auto; 
+}
+
+#modal-cursos-section > label {
+  padding: 15px 0 15px 0;
+}
+
+#modal-cursos-section > select, * > option {
+  border: 1.5px solid #bbbdc0;
+  opacity: 0.9;
 }
 
 #modal-middle {
@@ -212,6 +238,72 @@ button:focus-visible {
 #moda.hide {
   top: 0;
 }
+
+.lbl-aluno {
+  font-size: 15px;
+  font-weight: 700;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lbl-aluno > input {
+}
+
+.login-box {
+    margin-bottom: 1px;
+    display: flex;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #fee7e7;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 32vw;
+    height: 52vh;
+}
+
+.login-box > div > input {
+  border: 1.5px solid #807e7e;
+  opacity: 0.9;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  width: 200px;
+  height: 35px;
+  outline-style: none;
+  margin: 10px;
+  padding: 2px;
+  font-size: 13px;
+  text-indent: 10px;
+}
+
+.login-box-header {
+
+}
+
+.login-box-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+#login-box-btn {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  margin-top: 10px;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #415eb4;
+  color: #ffff;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -246,7 +338,6 @@ button:focus-visible {
 
 
   .cad-form {
-
     width: 350px;
     min-height: 400px;
     margin: 20px auto;
@@ -254,7 +345,7 @@ button:focus-visible {
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
   }
 
@@ -283,7 +374,9 @@ button:focus-visible {
   .cursos-section {
     display: flex;
     flex-direction: column;
-    margin: 20px auto;
+    margin: 10px auto;
+
+    width: 60%;
   }
 
   .option-style {

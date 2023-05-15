@@ -24,6 +24,12 @@ const cursos = document.getElementById('cursos');
 const diasemana = document.getElementById('diasemana');
 const horarioaula = document.getElementById('horarioaula');
 
+//login
+
+const login_email = document.getElementById('login-box-email');
+const login_senha = document.getElementById('login-box-senha');
+const login_button = document.getElementById('login-box-btn');
+
 
 
 
@@ -176,6 +182,28 @@ window.deleteAlunoByEmail = async function deleteAlunoByEmail(email) {
     });
 }
 
+window.tryLogin = async function tryLogin() {
+  let user = await login_email.value;
+  let senha = await login_senha.value;
+
+  let obj = {
+    email: user,
+    senha: senha
+  }
+    // axios.post(`http://localhost:3000/alunos/`, obj)
+    // .then(res => {
+    //   res.data;
+    // })
+
+  console.log(obj);
+
+  return obj;
+
+}
+
+login_button.onclick = async () => {
+  await tryLogin();
+}
 
 window.listaTodos = async function listaTodos(lista) {
   lista.forEach((e, indice, array) => {
@@ -204,11 +232,6 @@ window.listaTodos = async function listaTodos(lista) {
 
     icon_editar.src = "./icons/pencil-square.svg";
     icon_excluir.src = "./icons/x-square-fill.svg";
-
-
-
-
-
 
     td_nome.innerText = JSON.stringify(listaAlunos[indice].nome).replace(/^"|"$/g, '');
     td_idade.innerText = JSON.stringify(listaAlunos[indice].idade).replace(/^"|"$/g, '');
@@ -299,13 +322,13 @@ window.updateModal = async function updateModal(data) {
   const ano = date.getFullYear();
   const mes = String(date.getMonth() + 1).padStart(2, '0');
   const dia = String(date.getDate()).padStart(2, '0');
-  
+
 
   const dataFormatada = `${ano}-${mes}-${dia}`;
   console.log(dataFormatada);
 
   let materiaValue = '';
-  
+
   switch (data.materia) {
     case 'Violão - Nível Básico':
       materiaValue = 'violao'
@@ -328,7 +351,7 @@ window.updateModal = async function updateModal(data) {
       materiaValue = null;
   }
 
-  
+
   nome.value = await data.nome;
   idade.value = await data.idade;
   telefone.value = await data.telefone;
@@ -339,5 +362,8 @@ window.updateModal = async function updateModal(data) {
   diasemana.value = await data.dia_semana;
   horarioaula.value = data.horario_aula;
 }
+
+
+
 
 //module.exports = { getAlunos, listaAlunos, axios: require('axios') }
