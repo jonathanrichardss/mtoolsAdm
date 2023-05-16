@@ -201,11 +201,11 @@ button:focus-visible {
 }
 
 #modal-cursos-section {
-  min-width: 100%;
+  width: 90%;
   min-height: 100%;
   display: flex;
   justify-content: flex-start;
-  margin: -10px auto; 
+  margin: -16px auto; 
 }
 
 #modal-cursos-section > label {
@@ -319,6 +319,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 
+  #div-total-alunos {
+    width: 100%;
+    background-color: #219e6c;
+    display: flex;
+    align-items: center;
+    color: #ffff;
+  }
+
+  #div-total-alunos > p {
+    margin: 10px;
+    font-size: 16px;
+    font-weight: 600;
+  }
 
   .cadastro-container {
     width: 850px;

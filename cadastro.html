@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="" type="" href="" />
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mtools ADM</title>
+</head>
+
+<body>
+
+    <main>
+        <section class="cad-section">
+            <div>
+                <h1 onclick="createUsuarios()">Cadastro de usuarios - Mtools Adm</h1>
+                <div class="cadastro-container">
+                    <section class="usuario-section">
+                        <form action="" method="post" class="cad-form">
+                            <label for="nome" class="lbl-usuario">
+                                Nome:
+                                <input type="text" id="nome" title="nome" placeholder="Preencha o nome do usuario"
+                                    class="input-form">
+                            </label>
+                            <label for="idade" class="lbl-usuario">
+                                Idade:
+                                <input type="text" id="idade" title="idade" placeholder="Preencha a idade do usuario"
+                                    class="input-form">
+                            </label>
+                            <label for="telefone" class="lbl-usuario">
+                                Telefone:
+                                <input type="tel" id="telefone" title="telefone" pattern="^\d{2}-\d{9}$" required
+                                    placeholder="Preencha o telefone do usuario" class="input-form">
+                            </label>
+                            <label for="endereco" class="lbl-usuario">
+                                Endereço:
+                                <input type="tel" id="endereco" title="endereco"
+                                    placeholder="Preencha o endereço do usuario" class="input-form">
+                            </label>
+                            <label for="email" class="lbl-usuario">
+                                Email:
+                                <input type="email" id="email" title="email" placeholder="Preencha o email do usuario"
+                                    class="input-form">
+                            </label>
+                            <label for="senha" class="lbl-usuario">
+                                Senha:
+                                <input type="password" id="senha" title="senha" placeholder="Crie uma senha forte"
+                                    class="input-form">
+                            </label>
+                            <label for="datanasc" class="lbl-usuario">
+                                Data Nac.:
+                                <input type="date" id="datanasc" title="datanasc"
+                                    placeholder="Preencha a data de nascimento do usuario" class="input-form">
+                            </label>
+                        </form>
+                    </section>
+                </div>
+                <a href="usuarios.html">
+                    <button class="cad-btn">ENVIAR</button>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

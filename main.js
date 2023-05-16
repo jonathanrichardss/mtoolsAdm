@@ -1,10 +1,11 @@
 import axios from "axios";
 import Aluno from "./Aluno";
-import { timers } from "jquery";
+import Usuario from "./Usuario";
 
 export let listaAlunos = [];
 export let a = {};
 export let aluno = {};
+export let usuario = {};
 
 export var alunos = document.getElementById('table-alunos');
 export let celulas = document.querySelectorAll('table tr');
@@ -24,6 +25,8 @@ const cursos = document.getElementById('cursos');
 const diasemana = document.getElementById('diasemana');
 const horarioaula = document.getElementById('horarioaula');
 
+//modal
+const enviar_modal_button = document.getElementById('send-modal');
 //login
 
 const login_email = document.getElementById('login-box-email');
@@ -83,6 +86,17 @@ function setAlunos(obj) {
   return obj;
 }
 
+function setUsuario(user) {
+  user.nome = document.getElementById('nome').value;
+  user.data_nasc = document.getElementById('datanasc').value;
+  user.telefone = document.getElementById('telefone').value;
+  user.endereco = document.getElementById('endereco').value;
+  user.email = document.getElementById('email').value;
+  user.senha = document.getElementById('senha').value;
+
+  return user;
+}
+
 function setCurso() {
 
   let newCursoCad = {
@@ -121,13 +135,6 @@ function setCurso() {
   return newCursoCad;
 }
 
-
-// const cad_button = document.getElementById('cad-btn');
-// cad_button.onclick = () => {
-//   console.log('Entrou aqui!');
-//   window.createAlunos();
-// }
-
 window.createAlunos = async function createAlunos() {
   let aluno = new Aluno();
   let newAluno = setAlunos(aluno);
@@ -142,6 +149,19 @@ window.createAlunos = async function createAlunos() {
   //conf.show();
 
   await axios.post('http://localhost:3000/alunos/criar', newAluno)
+    .finally(() => alert('Cadastro realizado com sucesso!'));
+}
+
+window.createUsuarios = async function createUsuarios() {
+  let usuario = new Usuario();
+  let novoUsuario = setUsuario(usuario);
+
+  console.log('Passou por aqui')
+  console.log(novoUsuario);
+
+  //conf.show();
+
+  await axios.post('http://localhost:3000/usuarios/criar', novoUsuario)
     .finally(() => alert('Cadastro realizado com sucesso!'));
 }
 
@@ -163,8 +183,18 @@ window.getAlunoByEmail = async function getAlunoByEmail(email) {
     });
 }
 
-window.updateAlunoByEmail = async function updateAlunoByEmail() {
-  await axios.put(`http://localhost:3000/alunos/${email}`);
+window.updateAlunoByEmail = async function updateAlunoByEmail(obj) {
+  let updateAluno = setAlunos(obj);
+  let updateCursoAluno = setCurso();
+  updateAluno.curso = updateCursoAluno;
+
+  console.log('Passou por aqui')
+  console.log(updateAluno);
+
+  //conf.show();
+
+  await axios.post('http://localhost:3000/alunos/criar', updateAluno)
+    .finally(() => alert('Cadastro realizado com sucesso!'));
 }
 
 window.deleteAlunoByEmail = async function deleteAlunoByEmail(email) {
@@ -201,9 +231,9 @@ window.tryLogin = async function tryLogin() {
 
 }
 
-login_button.onclick = async () => {
-  await tryLogin();
-}
+// login_button.onclick = async () => {
+//   await tryLogin();
+// }
 
 window.listaTodos = async function listaTodos(lista) {
   lista.forEach((e, indice, array) => {
@@ -262,18 +292,24 @@ window.listaTodos = async function listaTodos(lista) {
       window.toggleModal();
       await window.updateModal(aluno[0]);
 
-      // if (confirm) {
-      //     window.updateAlunoByEmail(email)
-      // } else {
-      //   return;
-      // }
+      if (clicou) {
+        enviar_modal_button.onclick = () => {
+          window.updateAlunoByEmail(aluno[0]);
+          console.log('clicou')
+        }
+      } else {
+        return;
+      }
     }
 
     button_excluir.onclick = () => {
       let confirm = window.confirm('Deseja realmente excluir esse cadastro?');
 
       if (confirm) {
-        window.deleteAlunoByEmail(email)
+        window.deleteAlunoByEmail(email);
+          setTimeout(function() {
+            location.reload();
+          }, 500);
       } else {
         return;
       }
