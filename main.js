@@ -1,11 +1,13 @@
 import axios from "axios";
 import Aluno from "./Aluno";
 import Usuario from "./Usuario";
+//crypto = require('crypto');
 
 export let listaAlunos = [];
 export let a = {};
 export let aluno = {};
 export let usuario = {};
+export let authUser = {};
 
 export var alunos = document.getElementById('table-alunos');
 export let celulas = document.querySelectorAll('table tr');
@@ -99,7 +101,7 @@ function setUsuario(user) {
 
 function setCurso(obj) {
 
-    let newCursoCad = {
+  let newCursoCad = {
     idaluno: '',
     materia: '',
     diasemana: '',
@@ -109,7 +111,7 @@ function setCurso(obj) {
   // if (obj !== null) {
   //   newCursoCad.idaluno = obj.id;
   // }
-  
+
   let materia = newCursoCad.materia = document.getElementById('cursos').value;
   newCursoCad.diasemana = document.getElementById('diasemana').value;
 
@@ -219,25 +221,24 @@ window.deleteAlunoByEmail = async function deleteAlunoByEmail(email) {
 window.tryLogin = async function tryLogin() {
   let user = await login_email.value;
   let senha = await login_senha.value;
+  let token = crypto.randomUUID();
+
+  localStorage.setItem(token);
 
   let obj = {
     email: user,
-    senha: senha
+    senha: senha,
   }
-    // axios.post(`http://localhost:3000/alunos/`, obj)
-    // .then(res => {
-    //   res.data;
-    // })
+
+  axios.post(`http://localhost:3000/alunos/login`, obj)
+    .then(res => {
+      authUser = res.data;
+    });
 
   console.log(obj);
 
   return obj;
-
 }
-
-// login_button.onclick = async () => {
-//   await tryLogin();
-// }
 
 window.listaTodos = async function listaTodos(lista) {
   lista.forEach((e, indice, array) => {
@@ -297,22 +298,22 @@ window.listaTodos = async function listaTodos(lista) {
       await window.updateModal(aluno[0]);
 
       enviar_modal_button.onclick = () => {
-      window.updateAlunoByEmail(aluno[0]);
-     //window.toggleModal();
-      //location.reload();
-      console.log('clicou')
-        
+        window.updateAlunoByEmail(aluno[0]);
+        //window.toggleModal();
+        //location.reload();
+        console.log('clicou')
+
+      }
     }
-  }
 
     button_excluir.onclick = () => {
       let confirm = window.confirm('Deseja realmente excluir esse cadastro?');
 
       if (confirm) {
         window.deleteAlunoByEmail(email);
-          setTimeout(function() {
-            location.reload();
-          }, 500);
+        setTimeout(function () {
+          location.reload();
+        }, 500);
       } else {
         return;
       }
@@ -402,7 +403,12 @@ window.updateModal = async function updateModal(data) {
   horarioaula.value = data.horario_aula;
 }
 
-
+login_button.onclick = () => {
+  let auth = window.tryLogin();
+  // if (auth !== null && auth !== '' && localStorage.getItem()) 
+  //location.href('index.html');
+  console.log(auth);
+}
 
 
 //module.exports = { getAlunos, listaAlunos, axios: require('axios') }
