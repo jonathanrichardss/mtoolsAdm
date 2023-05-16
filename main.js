@@ -97,15 +97,19 @@ function setUsuario(user) {
   return user;
 }
 
-function setCurso() {
+function setCurso(obj) {
 
-  let newCursoCad = {
+    let newCursoCad = {
     idaluno: '',
     materia: '',
     diasemana: '',
     horarioaula: ''
   };
 
+  // if (obj !== null) {
+  //   newCursoCad.idaluno = obj.id;
+  // }
+  
   let materia = newCursoCad.materia = document.getElementById('cursos').value;
   newCursoCad.diasemana = document.getElementById('diasemana').value;
 
@@ -185,7 +189,7 @@ window.getAlunoByEmail = async function getAlunoByEmail(email) {
 
 window.updateAlunoByEmail = async function updateAlunoByEmail(obj) {
   let updateAluno = setAlunos(obj);
-  let updateCursoAluno = setCurso();
+  let updateCursoAluno = setCurso(obj);
   updateAluno.curso = updateCursoAluno;
 
   console.log('Passou por aqui')
@@ -292,15 +296,14 @@ window.listaTodos = async function listaTodos(lista) {
       window.toggleModal();
       await window.updateModal(aluno[0]);
 
-      if (clicou) {
-        enviar_modal_button.onclick = () => {
-          window.updateAlunoByEmail(aluno[0]);
-          console.log('clicou')
-        }
-      } else {
-        return;
-      }
+      enviar_modal_button.onclick = () => {
+      window.updateAlunoByEmail(aluno[0]);
+     //window.toggleModal();
+      //location.reload();
+      console.log('clicou')
+        
     }
+  }
 
     button_excluir.onclick = () => {
       let confirm = window.confirm('Deseja realmente excluir esse cadastro?');

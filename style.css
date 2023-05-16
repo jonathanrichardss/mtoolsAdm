@@ -304,6 +304,38 @@ button:focus-visible {
   transition: border-color 0.25s;
 }
 
+.usuario-section {
+  background-color: red;
+  width: 100%;
+  display: flex;
+}
+
+.cad-form-usuario {
+  width: 60%;
+  background-color: #219e6c;
+  min-height: 400px;
+  margin: 20px auto;
+  padding: 5px;
+  border-radius: 8px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.cad-form-usuario * {
+  width: 80%;
+  background-color: yellow;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cad-form-usuario input {
+  margin-right: 75px;
+  width: 240px;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {
