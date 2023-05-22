@@ -50,6 +50,24 @@ h1 {
   line-height: 1.1;
 }
 
+.main-title-alunos {
+  font-size: 2.3rem;
+ text-align: center;
+ margin-bottom: 22px;
+}
+
+.main-title-cad-alunos {
+  font-size: 2.3rem;
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.main-title-cad-usuarios {
+  font-size: 2.3rem;
+  text-align: center;
+  margin-bottom: 22px;
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -102,7 +120,7 @@ button:focus-visible {
 }
 
 .table {
-  width: 100vw;
+  min-width: 1250px;
   margin: 10px;
   padding: 5px;
   table-layout: auto;
@@ -305,14 +323,14 @@ button:focus-visible {
 }
 
 .usuario-section {
-  background-color: red;
+  /* background-color: red; */
   width: 100%;
   display: flex;
 }
 
 .cad-form-usuario {
   width: 60%;
-  background-color: #219e6c;
+  /* background-color: #219e6c; */
   min-height: 400px;
   margin: 20px auto;
   padding: 5px;
@@ -325,7 +343,7 @@ button:focus-visible {
 
 .cad-form-usuario * {
   width: 80%;
-  background-color: yellow;
+  /* background-color: yellow; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -356,11 +374,13 @@ button:focus-visible {
     background-color: #219e6c;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     color: #ffff;
   }
 
   #div-total-alunos > p {
     margin: 10px;
+    padding-left: 5px;
     font-size: 16px;
     font-weight: 600;
   }
@@ -374,7 +394,7 @@ button:focus-visible {
   }
 
   .show-content-container {
-    width: 1150px;
+    width: 1350px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -431,7 +451,7 @@ button:focus-visible {
     text-indent: 5px;
   }
 
-  .cad-btn {
+  .cad-btn, .cad-btn-usuario {
     background-color: #27ca66;
     width: 850px;
     height: 45px;

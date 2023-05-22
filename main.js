@@ -10,7 +10,8 @@ export let authUser = {};
 
 export var alunos = document.getElementById('table-alunos');
 export let celulas = document.querySelectorAll('table tr');
-export let cadBtn = document.getElementById('cad-btn');
+export const cadBtn = document.getElementById('cad-btn');
+export const cadBtnUsuario = document.getElementById('cad-btn-usuario');
 
 export let home_buttons = document.querySelectorAll('ul li');
 
@@ -39,11 +40,15 @@ export const login_button = document.getElementById('login-box-btn');
 
 //home
 
-export const button_home_on_go_to_home = document.getElementById('go-home')
-export const button_home_on_go_to_alunos = document.getElementById('go-alunos')
-export const button_home_on_go_to_cad_alunos = document.getElementById('go-cad-alunos')
-export const button_home_on_go_to_cad_usuarios = document.getElementById('go-cad-usuarios')
-export const button_home_on_go_to_sair = document.getElementById('go-sair')
+export const button_home_on_go_to_home = document.getElementById('go-home');
+export const button_home_on_go_to_alunos = document.getElementById('go-alunos');
+export const button_home_on_go_to_cad_alunos = document.getElementById('go-cad-alunos');
+export const button_home_on_go_to_cad_usuarios = document.getElementById('go-cad-usuarios');
+export const button_home_on_go_to_sair = document.getElementById('go-sair');
+
+
+
+export const cadastro_container = document.getElementById('cadastro-container');
 
 
 
@@ -156,15 +161,45 @@ window.createAlunos = async function createAlunos() {
   let newCursoAluno = setCurso();
   newAluno.curso = newCursoAluno;
 
+  if (newAluno.nome === '') {
+    alert('Preencha o campo nome.');
+    return;
+  }
 
+  if (newAluno.idade === '') {
+    alert('Preencha o campo idade.');
+    return;
+  }
 
+  if (newAluno.endereco === '') {
+    alert('Preencha o campo endereço.');
+    return;
+  }
+
+  if (newAluno.email === '') {
+    alert('Preencha o campo email.');
+    return;
+  }
+
+  if (newAluno.data_nasc === '') {
+    alert('Preencha o campo data de nascimento.');
+    return;
+  }
   console.log('Passou por aqui')
   console.log(newAluno);
 
-  //conf.show();
-
   await axios.post('http://localhost:3000/alunos/criar', newAluno)
-    .finally(() => alert('Cadastro realizado com sucesso!'));
+    .then(() => {
+      alert('Cadastro realizado com sucesso!');
+    })
+    .finally( location.href = "alunos.html"
+    );
+  }
+  
+  if (cadBtn !== null) {
+    cadBtn.onclick = async () => {
+      window.createAlunos();      
+  }
 }
 
 window.createUsuarios = async function createUsuarios() {
@@ -176,10 +211,11 @@ window.createUsuarios = async function createUsuarios() {
 
   //conf.show();
 
-  await axios.post('http://localhost:3000/usuarios/criar', novoUsuario)
+  axios.post('http://localhost:3000/usuarios/criar', novoUsuario)
     .finally(() => alert('Cadastro realizado com sucesso!'));
-}
 
+
+}
 
 window.getAlunos = async function getAlunos() {
   await axios.get('http://localhost:3000/alunos')
@@ -230,9 +266,8 @@ window.deleteAlunoByEmail = async function deleteAlunoByEmail(email) {
 window.tryLogin = async function tryLogin() {
   let user = login_email.value;
   let senha = login_senha.value;
-  let tokenVal = Math.random();
+  let tokenVal = Math.random().toString(16).substring(2) + Math.random().toString(16).substring(2);
 
-  localStorage.setItem('token', tokenVal);
 
   let obj = {
     email: user,
@@ -240,9 +275,10 @@ window.tryLogin = async function tryLogin() {
   }
 
   await axios.post(`http://localhost:3000/alunos/login`, obj)
-    .then(async function(res) {
+    .then(async function (res) {
       authUser = await res.data;
-      console.log( await res.data);
+      localStorage.setItem('token', tokenVal);
+      console.log(await res.data);
       console.log('authUser');
       return res.data;
     })
@@ -250,7 +286,7 @@ window.tryLogin = async function tryLogin() {
       console.error(error);
     });
 
-    console.log('Frase aqui.')
+  console.log('Frase aqui.')
 }
 
 if (login_button !== null) {
@@ -327,10 +363,10 @@ window.listaTodos = async function listaTodos(lista) {
 
       enviar_modal_button.onclick = () => {
         window.updateAlunoByEmail(aluno[0]);
-        //window.toggleModal();
-        //location.reload();
-        console.log('clicou')
-
+        window.toggleModal();
+        location.reload();
+        console.log('clicou');
+        return;
       }
     }
 
@@ -367,6 +403,9 @@ window.listaTodos = async function listaTodos(lista) {
     });
   });
 
+  let total_alunos = document.getElementById('total-alunos');
+
+  total_alunos.textContent = `Total alunos: ${listaAlunos.length}`;
 
 
 }
@@ -433,8 +472,8 @@ window.updateModal = async function updateModal(data) {
   horarioaula.value = data.horario_aula;
 }
 
-window.validaUserIsLogado = async function validaUserIsLogado(user) {
-  if (Object.keys(user).length === 0 || localStorage.getItem() === '') {
+window.validaUserIsLogado = function validaUserIsLogado() {
+  if (localStorage.getItem('token') === '' || localStorage.getItem('token') === null) {
     return false;
   } else {
     return true;
@@ -442,7 +481,6 @@ window.validaUserIsLogado = async function validaUserIsLogado(user) {
 }
 
 window.goToPageAuth = async function goToPageAuth(page) {
-  await window.validaUserIsLogado();
 
   if (page !== '' || page !== null || page !== undefined) {
     location.href = page;
@@ -473,34 +511,60 @@ window.goToPageAuth = async function goToPageAuth(page) {
 //   buttons.addEventListener('click', handleClickHomeButton(buttons, authUser, './alunos.html'));
 //   });
 
-function handleClickHomeButton(button, user) {
-  user = authUser;
+async function handleClickHomeButton(button) {
+
+
+  //user = authUser;
 
   console.log('entrou na function');
-  button.onclick = async (user, page) => {
-  await window.validaUserIsLogado(user);
+  page = "alunos.html";
+  button.onclick = async () => {
 
-  if (user !== null) {
-    if (page != null) {
-      await window.goToPageAuth("alunos.html");
+    //await window.validaUserIsLogado(user);
+    window.alert('Clicou no navigate');
+    if (user !== null) {
+      if (page != null) {
+        window.goToPageAuth(page);
+      } else {
+        return;
+      }
     } else {
       return;
     }
-  } else {
-    return;
   }
-}
 }
 
 window.navigate = async function navigate() {
-let btnsArr = [button_home_on_go_to_home, button_home_on_go_to_alunos
-,button_home_on_go_to_cad_alunos
-,button_home_on_go_to_cad_usuarios
-,button_home_on_go_to_sair];
+  let btnsArr = [button_home_on_go_to_home, button_home_on_go_to_alunos
+    , button_home_on_go_to_cad_alunos
+    , button_home_on_go_to_cad_usuarios
+    , button_home_on_go_to_sair];
 
-  btnsArr.forEach(btn => {
-    handleClickHomeButton(btn, authUser, "alunos.html");
-  })
+
+
 }
+
+if (button_home_on_go_to_alunos != null) {
+
+  button_home_on_go_to_alunos.addEventListener("click", () => {
+    let isLogado = window.validaUserIsLogado();
+
+    if (!isLogado) {
+      button_home_on_go_to_alunos.setAttribute('href', "http://localhost:5173/login.html");
+      return;
+    }
+
+    button_home_on_go_to_alunos.setAttribute('href', "http://localhost:5173/alunos.html");
+  });
+
+}
+
+
+console.log(cadastro_container);
+console.log(cadBtnUsuario);
+console.log(button_home_on_go_to_cad_usuarios);
+console.log(window.location.href);
+//await window.validaUserIsLogado(authUser);
+
 
 // module.exports = { axios: require('axios'), uuid: require('uuid') }

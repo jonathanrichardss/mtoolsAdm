@@ -33,4 +33,4 @@ const mobileNavBar = new MobileNavBar (
 
 mobileNavBar.init();
 
-//export default mobileNavBar;
+export default MobileNavBar;

@@ -14,13 +14,13 @@
   <main>
     <section class="main-section">
       <div>
-        <h1 onclick="createAlunos()">Cadastro de alunos - Mtools Adm</h1>
+        <h1 class="main-title-cad-alunos">Cadastro de alunos - Mtools Adm</h1>
         <div class="cadastro-container">
           <section class="aluno-section">
             <form action="" method="post" class="cad-form">
               <label for="nome" class="lbl-aluno">
                 Nome:
-                <input type="text" id="nome" title="nome" placeholder="Preencha o nome do aluno" class="input-form">
+                <input type="text" id="nome" title="nome" placeholder="Preencha o nome do aluno" class="input-form" required>
               </label>
               <label for="idade" class="lbl-aluno">
                 Idade:
@@ -85,8 +85,8 @@
             </div>
           </section>
         </div>
-        <a href="alunos.html">
-        <button class="cad-btn">ENVIAR</button>
+        <a>
+        <button class="cad-btn" id="cad-btn" type="submit">ENVIAR</button>
         </a>
       </div>
     </section>
