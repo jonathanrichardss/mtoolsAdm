@@ -13,19 +13,19 @@
     
 <main>
     <section class="login-section">
-        <div class="login-box" id="login-box">
+        <form class="login-box" id="login-box">
             <div class="login-box-header">
                 <h3>Login</h3>
             </div>
             <div class="login-box-body">
-                <input type="text" placeholder="E-mail" id="login-box-email" maxlength="40">
-                <input type="text" placeholder="Senha" id="login-box-senha" maxlength="40">                
+                <input type="email" placeholder="E-mail" id="login-box-email" maxlength="40" required>
+                <input type="password" placeholder="Senha" id="login-box-senha" maxlength="40" required>                
             </div>
             <a href="cadastro.html">
                 <p>Novo aqui? Cadastre-se</p>
             </a>
-            <button id="login-box-btn">ENTRAR</button>
-        </div>
+            <button type="submit" id="login-box-btn">ENTRAR</button>
+        </form>
     </section>
 </main>
 

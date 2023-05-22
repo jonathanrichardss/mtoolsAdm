@@ -85,13 +85,14 @@ export function setAlunos(obj) {
     case 'contrabaixo':
       opcoes = 3
       break;
-
     case 'teclado':
       opcoes = 4
       break;
-
     case 'canto':
       opcoes = 5
+      break;
+    case 'bateria':
+      opcoes = 6
       break;
     default:
       opcoes = null;
@@ -139,13 +140,14 @@ export function setCurso(obj) {
     case 'contrabaixo':
       materia = 3
       break;
-
     case 'teclado':
       materia = 4
       break;
-
     case 'canto':
       materia = 5
+      break;
+    case 'bateria':
+      materia = 6
       break;
   }
 
@@ -192,13 +194,13 @@ window.createAlunos = async function createAlunos() {
     .then(() => {
       alert('Cadastro realizado com sucesso!');
     })
-    .finally( location.href = "alunos.html"
+    .finally(location.href = "alunos.html"
     );
-  }
-  
-  if (cadBtn !== null) {
-    cadBtn.onclick = async () => {
-      window.createAlunos();      
+}
+
+if (cadBtn !== null) {
+  cadBtn.onclick = async () => {
+    window.createAlunos();
   }
 }
 
@@ -439,22 +441,23 @@ window.updateModal = async function updateModal(data) {
   let materiaValue = '';
 
   switch (data.materia) {
-    case 'Violão - Nível Básico':
+    case 'Violão':
       materiaValue = 'violao'
       break;
-    case 'guitarra':
-      materiaValue = 2
+    case 'Guitarra':
+      materiaValue = 'guitarra'
       break;
-    case 'contrabaixo':
-      materiaValue = 3
+    case 'Contrabaixo':
+      materiaValue = 'contrabaixo'
       break;
-
-    case 'teclado':
-      materiaValue = 4
+    case 'Teclado':
+      materiaValue = 'teclado'
       break;
-
-    case 'canto':
-      materiaValue = 5
+    case 'Canto':
+      materiaValue = 'canto'
+      break;
+    case 'Bateria':
+      materiaValue = 'bateria'
       break;
     default:
       materiaValue = null;
