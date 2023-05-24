@@ -50,8 +50,8 @@ export const button_home_on_go_to_cad_usuarios = document.getElementById('go-cad
 export const button_home_on_go_to_sair = document.getElementById('go-sair');
 
 
-export const cadastro_href = "http://localhost:5173/cadastro.html";
-export const index_href = "http://localhost:5173/index.html";
+export const cadastro_href = "mtoolsadmbackend-production.up.railway.app/cadastro.html";
+export const index_href = "mtoolsadmbackend-production.up.railway.app/index.html";
 
 
 export const cadastro_container = document.getElementById('cadastro-container');
@@ -195,7 +195,7 @@ window.createAlunos = async function createAlunos() {
   console.log('Passou por aqui')
   console.log(newAluno);
 
-  await axios.post('http://localhost:3000/alunos/criar', newAluno)
+  await axios.post('mtoolsadmbackend-production.up.railway.app/alunos/criar', newAluno)
     .then(alert('Cadastro realizado com sucesso!'))
     .finally(location.href = "alunos.html"
     );
@@ -243,7 +243,7 @@ window.createUsuarios = async function createUsuarios() {
 
   //conf.show();
 
-  axios.post('http://localhost:3000/usuarios/criar', novoUsuario)
+  axios.post('mtoolsadmbackend-production.up.railway.app/usuarios/criar', novoUsuario)
     .then(alert('Cadastro realizado com sucesso!'))
     .finally(window.location.href = "login.html");
 }
@@ -256,7 +256,7 @@ if (cadBtnUsuario !== null) {
 
 
 window.getAlunos = async function getAlunos() {
-  await axios.get('http://localhost:3000/alunos')
+  await axios.get('mtoolsadmbackend-production.up.railway.app/alunos')
     .then(res => {
       listaAlunos = res.data;
       return listaAlunos;
@@ -265,7 +265,7 @@ window.getAlunos = async function getAlunos() {
 }
 
 window.getAlunoByEmail = async function getAlunoByEmail(email) {
-  await axios.get(`http://localhost:3000/alunos/${email}`)
+  await axios.get(`mtoolsadmbackend-production.up.railway.app/alunos/${email}`)
     .then(res => {
       aluno = res.data;
       return res.data;
@@ -282,12 +282,12 @@ window.updateAlunoByEmail = async function updateAlunoByEmail(obj) {
 
   //conf.show();
 
-  await axios.post('http://localhost:3000/alunos/criar', updateAluno)
+  await axios.post('mtoolsadmbackend-production.up.railway.app/alunos/criar', updateAluno)
     .finally(() => alert('Cadastro realizado com sucesso!'));
 }
 
 window.deleteAlunoByEmail = async function deleteAlunoByEmail(email) {
-  await axios.delete(`http://localhost:3000/alunos/${email}`)
+  await axios.delete(`mtoolsadmbackend-production.up.railway.app/alunos/${email}`)
     .then(res => {
       email = res.data;
       return email;
@@ -311,7 +311,7 @@ window.tryLogin = async function tryLogin() {
     senha: senha,
   }
 
-  await axios.post(`http://localhost:3000/alunos/login`, obj)
+  await axios.post(`mtoolsadmbackend-production.up.railway.app/alunos/login`, obj)
     .then(async function (res) {
       authUser = await res.data;
       console.log(await res.data);
@@ -541,11 +541,11 @@ if (button_home_on_go_to_alunos != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_alunos.setAttribute('href', "http://localhost:5173/login.html");
+      button_home_on_go_to_alunos.setAttribute('href', "mtoolsadmbackend-production.up.railway.app/login.html");
       return;
     }
 
-    button_home_on_go_to_alunos.setAttribute('href', "http://localhost:5173/alunos.html");
+    button_home_on_go_to_alunos.setAttribute('href', "mtoolsadmbackend-production.up.railway.app/alunos.html");
   });
 
 }
@@ -556,11 +556,11 @@ if (button_home_on_go_to_home != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_alunos.setAttribute('href', "http://localhost:5173/login.html");
+      button_home_on_go_to_alunos.setAttribute('href', "mtoolsadmbackend-production.up.railway.app/login.html");
       return;
     }
 
-    button_home_on_go_to_home.setAttribute('href', "http://localhost:5173/home.html");
+    button_home_on_go_to_home.setAttribute('href', "mtoolsadmbackend-production.up.railway.app/home.html");
   });
 
 }
@@ -571,11 +571,11 @@ if (button_home_on_go_to_cad_alunos != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_cad_alunos.setAttribute('href', "http://localhost:5173/login.html");
+      button_home_on_go_to_cad_alunos.setAttribute('href', "mtoolsadmbackend-production.up.railway.app/login.html");
       return;
     }
 
-    button_home_on_go_to_cad_alunos.setAttribute('href', "http://localhost:5173/index.html");
+    button_home_on_go_to_cad_alunos.setAttribute('href', "mtoolsadmbackend-production.up.railway.app/index.html");
   });
 
 }
@@ -586,11 +586,11 @@ if (button_home_on_go_to_alunos != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_alunos.setAttribute('href', "http://localhost:5173/login.html");
+      button_home_on_go_to_alunos.setAttribute('href', "mtoolsadmbackend-production.up.railway.app/login.html");
       return;
     }
 
-    button_home_on_go_to_alunos.setAttribute('href', "http://localhost:5173/alunos.html");
+    button_home_on_go_to_alunos.setAttribute('href', "mtoolsadmbackend-production.up.railway.app/alunos.html");
   });
 
 }
@@ -649,10 +649,10 @@ window.checkHrefChange = function checkHrefChange() {
   let isLogado = window.validaUserIsLogado();
 
   if (!isLogado) {
-    location.href = "http://localhost:5173/login.html";
-    isDone = true; 
+    location.href = "mtoolsadmbackend-production.up.railway.app/login.html";
+    isDone = true;
     checkHrefChange();
-    return;  
+    return;
   }
 }
 //NÃO COMENTAR OU MUDAR ESSA ESTRUTURA ACIMA
