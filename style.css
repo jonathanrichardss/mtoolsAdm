@@ -323,16 +323,14 @@ button:focus-visible {
 }
 
 .usuario-section {
-  /* background-color: red; */
   width: 100%;
   display: flex;
 }
 
 .cad-form-usuario {
-  width: 60%;
-  /* background-color: #219e6c; */
+  width: 50%;
   min-height: 400px;
-  margin: 20px auto;
+  margin: 20px 200px;
   padding: 5px;
   border-radius: 8px; 
   display: flex;
@@ -342,7 +340,7 @@ button:focus-visible {
 }
 
 .cad-form-usuario * {
-  width: 80%;
+  width: 100%;
   /* background-color: yellow; */
   display: flex;
   justify-content: space-between;
@@ -457,7 +455,41 @@ button:focus-visible {
     height: 45px;
     font-size: 15px;
     text-align: center;
+    text-indent: -18px;
     color: white;
+  }
+
+  .home-btn {
+    background-color: #326052;
+    width: 170px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    height: 45px;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+    position: relative;
+  }
+
+  .home-btn-alunos {
+    background-color: #326052;
+    width: 20%;
+    margin: 22px 475px;
+    border-radius: 8px;
+    height: 45px;
+    font-size: 15px;
+    text-align: center;
+    color: white;
+    position: relative;
+  }
+
+  .universal-bar-buttons {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
 }
 

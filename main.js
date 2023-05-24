@@ -8,17 +8,21 @@ export let aluno = {};
 export let usuario = {};
 export let authUser = {};
 
+//Carregar tabela e preenchimento das celulas da mesma
 export var alunos = document.getElementById('table-alunos');
 export let celulas = document.querySelectorAll('table tr');
 export const cadBtn = document.getElementById('cad-btn');
 export const cadBtnUsuario = document.getElementById('cad-btn-usuario');
 
+//Botões da home
 export let home_buttons = document.querySelectorAll('ul li');
 
+//Modal section
 export const closeModalButton = document.querySelector("#close-modal");
 export const modal = document.querySelector("#modal");
 export const fade = document.querySelector("#fade");
 
+//Campos para envio/validação de formulários
 export const nome = document.getElementById('nome');
 export const idade = document.getElementById('idade');
 export const telefone = document.getElementById('telefone');
@@ -31,15 +35,14 @@ export const horarioaula = document.getElementById('horarioaula');
 
 //modal
 export const enviar_modal_button = document.getElementById('send-modal');
-//login
 
+//login
 export const login_email = document.getElementById('login-box-email');
 export const login_senha = document.getElementById('login-box-senha');
 export const login_button = document.getElementById('login-box-btn');
 
 
 //home
-
 export const button_home_on_go_to_home = document.getElementById('go-home');
 export const button_home_on_go_to_alunos = document.getElementById('go-alunos');
 export const button_home_on_go_to_cad_alunos = document.getElementById('go-cad-alunos');
@@ -47,9 +50,11 @@ export const button_home_on_go_to_cad_usuarios = document.getElementById('go-cad
 export const button_home_on_go_to_sair = document.getElementById('go-sair');
 
 
+export const cadastro_href = "http://localhost:5173/cadastro.html";
+export const index_href = "http://localhost:5173/index.html";
+
 
 export const cadastro_container = document.getElementById('cadastro-container');
-
 
 
 export function rowFactory() {
@@ -191,9 +196,7 @@ window.createAlunos = async function createAlunos() {
   console.log(newAluno);
 
   await axios.post('http://localhost:3000/alunos/criar', newAluno)
-    .then(() => {
-      alert('Cadastro realizado com sucesso!');
-    })
+    .then(alert('Cadastro realizado com sucesso!'))
     .finally(location.href = "alunos.html"
     );
 }
@@ -204,9 +207,36 @@ if (cadBtn !== null) {
   }
 }
 
+
+
 window.createUsuarios = async function createUsuarios() {
   let usuario = new Usuario();
   let novoUsuario = setUsuario(usuario);
+
+  if (usuario.nome === '') {
+    alert('Preencha o campo nome.');
+    return;
+  }
+
+  if (usuario.idade === '') {
+    alert('Preencha o campo idade.');
+    return;
+  }
+
+  if (usuario.endereco === '') {
+    alert('Preencha o campo endereço.');
+    return;
+  }
+
+  if (usuario.email === '') {
+    alert('Preencha o campo email.');
+    return;
+  }
+
+  if (usuario.data_nasc === '') {
+    alert('Preencha o campo data de nascimento.');
+    return;
+  }
 
   console.log('Passou por aqui')
   console.log(novoUsuario);
@@ -214,10 +244,16 @@ window.createUsuarios = async function createUsuarios() {
   //conf.show();
 
   axios.post('http://localhost:3000/usuarios/criar', novoUsuario)
-    .finally(() => alert('Cadastro realizado com sucesso!'));
-
-
+    .then(alert('Cadastro realizado com sucesso!'))
+    .finally(window.location.href = "login.html");
 }
+
+if (cadBtnUsuario !== null) {
+  cadBtnUsuario.onclick = async () => {
+    window.createUsuarios();
+  }
+}
+
 
 window.getAlunos = async function getAlunos() {
   await axios.get('http://localhost:3000/alunos')
@@ -268,7 +304,6 @@ window.deleteAlunoByEmail = async function deleteAlunoByEmail(email) {
 window.tryLogin = async function tryLogin() {
   let user = login_email.value;
   let senha = login_senha.value;
-  let tokenVal = Math.random().toString(16).substring(2) + Math.random().toString(16).substring(2);
 
 
   let obj = {
@@ -279,7 +314,6 @@ window.tryLogin = async function tryLogin() {
   await axios.post(`http://localhost:3000/alunos/login`, obj)
     .then(async function (res) {
       authUser = await res.data;
-      localStorage.setItem('token', tokenVal);
       console.log(await res.data);
       console.log('authUser');
       return res.data;
@@ -292,14 +326,18 @@ window.tryLogin = async function tryLogin() {
 }
 
 if (login_button !== null) {
-  login_button.onclick = async () => {
+  login_button.onclick = async (e) => {
+    e.preventDefault();
     await window.tryLogin()
+
+    let tokenVal = Math.random().toString(16).substring(2) + Math.random().toString(16).substring(2);
 
     if (Object.keys(authUser).length === 0) {
       console.log('fora do IF')
       console.log('time is brief')
       console.log(authUser);
     } else {
+      localStorage.setItem('token', tokenVal);
       location.href = "home.html"
     }
   }
@@ -492,58 +530,53 @@ window.goToPageAuth = async function goToPageAuth(page) {
   }
 }
 
-// button_home_on_go_to.onclick = async (user, page) => {
-//   await window.validaUserIsLogado(user);
 
-//   if (user !== null) {
-//     if (page != null) {
-//       await window.goToPageAuth(page);
-//     } else {
-//       return;
-//     }
-//   } else {
-//     return;
-//   }
-// }
-
-
-// home_buttons.forEach((buttons, key) => {
-//   //console.log(buttons);
-//   console.log(buttons);
-//   //console.log(buttons.parentNode);
-//   buttons.addEventListener('click', handleClickHomeButton(buttons, authUser, './alunos.html'));
-//   });
-
-async function handleClickHomeButton(button) {
-
-
-  //user = authUser;
-
-  console.log('entrou na function');
-  page = "alunos.html";
-  button.onclick = async () => {
-
-    //await window.validaUserIsLogado(user);
-    window.alert('Clicou no navigate');
-    if (user !== null) {
-      if (page != null) {
-        window.goToPageAuth(page);
-      } else {
-        return;
-      }
-    } else {
-      return;
-    }
-  }
+if (button_home_on_go_to_sair !== null) {
+  button_home_on_go_to_sair.onclick = () => localStorage.clear();
 }
 
-window.navigate = async function navigate() {
-  let btnsArr = [button_home_on_go_to_home, button_home_on_go_to_alunos
-    , button_home_on_go_to_cad_alunos
-    , button_home_on_go_to_cad_usuarios
-    , button_home_on_go_to_sair];
+if (button_home_on_go_to_alunos != null) {
 
+  button_home_on_go_to_alunos.addEventListener("click", () => {
+    let isLogado = window.validaUserIsLogado();
 
+    if (!isLogado) {
+      button_home_on_go_to_alunos.setAttribute('href', "http://localhost:5173/login.html");
+      return;
+    }
+
+    button_home_on_go_to_alunos.setAttribute('href', "http://localhost:5173/alunos.html");
+  });
+
+}
+
+if (button_home_on_go_to_home != null) {
+
+  button_home_on_go_to_home.addEventListener("click", () => {
+    let isLogado = window.validaUserIsLogado();
+
+    if (!isLogado) {
+      button_home_on_go_to_alunos.setAttribute('href', "http://localhost:5173/login.html");
+      return;
+    }
+
+    button_home_on_go_to_home.setAttribute('href', "http://localhost:5173/home.html");
+  });
+
+}
+
+if (button_home_on_go_to_cad_alunos != null) {
+
+  button_home_on_go_to_cad_alunos.addEventListener("click", () => {
+    let isLogado = window.validaUserIsLogado();
+
+    if (!isLogado) {
+      button_home_on_go_to_cad_alunos.setAttribute('href', "http://localhost:5173/login.html");
+      return;
+    }
+
+    button_home_on_go_to_cad_alunos.setAttribute('href', "http://localhost:5173/index.html");
+  });
 
 }
 
@@ -563,11 +596,65 @@ if (button_home_on_go_to_alunos != null) {
 }
 
 
-console.log(cadastro_container);
-console.log(cadBtnUsuario);
-console.log(button_home_on_go_to_cad_usuarios);
-console.log(window.location.href);
-//await window.validaUserIsLogado(authUser);
+function limpaCampos() {
+
+  [nome,
+    idade,
+    telefone,
+    endereco,
+    email,
+    datanasc,
+    cursos,
+    diasemana,
+    horarioaula].forEach((el) => {
+      if (el.value !== null || el.value !== '') {
+        nome.value = '';
+        idade.value = '';
+        telefone.value = '';
+        endereco.value = '';
+        email.value = '';
+        datanasc.value = '';
+      }
+    })
+}
+
+// window.addEventListener('beforeunload', function () {
+//   if (location.href == cadastro_href || this.location.href == index_href) {
+//     limpaCampos();
+//   }
+// });
+
+window.addEventListener('pagehide', function () {
+  if (location.href == cadastro_href || this.location.href == index_href) {
+    limpaCampos();
+  }
+});
+
+window.addEventListener('pageshow', function () {
+  if (location.href == cadastro_href || this.location.href == index_href) {
+    limpaCampos();
+  }
+});
 
 
-// module.exports = { axios: require('axios'), uuid: require('uuid') }
+console.log(history.state);
+//NÃO COMENTAR OU MUDAR ESSA ESTRUTURA ABAIXO
+let isDone = false;
+
+// Função para verificar alterações em location.href
+window.checkHrefChange = function checkHrefChange() {
+
+  // Verifica se houve alteração em location.href
+  // Lógica a ser executada quando houver uma alteração em location.href
+  let isLogado = window.validaUserIsLogado();
+
+  if (!isLogado) {
+    location.href = "http://localhost:5173/login.html";
+    isDone = true; 
+    checkHrefChange();
+    return;  
+  }
+}
+//NÃO COMENTAR OU MUDAR ESSA ESTRUTURA ACIMA
+
+checkHrefChange();
