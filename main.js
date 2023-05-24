@@ -195,7 +195,7 @@ window.createAlunos = async function createAlunos() {
   console.log('Passou por aqui')
   console.log(newAluno);
 
-  await axios.post('https://mtools-adm-front-end-sodq.vercel.app/alunos/criar', newAluno)
+  await axios.post('mtoolsadmbackend-production.up.railway.app/alunos/criar', newAluno)
     .then(alert('Cadastro realizado com sucesso!'))
     .finally(location.href = "alunos.html"
     );
@@ -243,7 +243,7 @@ window.createUsuarios = async function createUsuarios() {
 
   //conf.show();
 
-  axios.post('https://mtools-adm-front-end-sodq.vercel.app/usuarios/criar', novoUsuario)
+  axios.post('mtoolsadmbackend-production.up.railway.app/usuarios/criar', novoUsuario)
     .then(alert('Cadastro realizado com sucesso!'))
     .finally(window.location.href = "login.html");
 }
@@ -256,7 +256,7 @@ if (cadBtnUsuario !== null) {
 
 
 window.getAlunos = async function getAlunos() {
-  await axios.get('https://mtools-adm-front-end-sodq.vercel.app/alunos')
+  await axios.get('mtoolsadmbackend-production.up.railway.app/alunos')
     .then(res => {
       listaAlunos = res.data;
       return listaAlunos;
@@ -265,7 +265,7 @@ window.getAlunos = async function getAlunos() {
 }
 
 window.getAlunoByEmail = async function getAlunoByEmail(email) {
-  await axios.get(`https://mtools-adm-front-end-sodq.vercel.app/alunos/${email}`)
+  await axios.get(`mtoolsadmbackend-production.up.railway.app/alunos/${email}`)
     .then(res => {
       aluno = res.data;
       return res.data;
@@ -282,12 +282,12 @@ window.updateAlunoByEmail = async function updateAlunoByEmail(obj) {
 
   //conf.show();
 
-  await axios.post('https://mtools-adm-front-end-sodq.vercel.app/alunos/criar', updateAluno)
+  await axios.post('mtoolsadmbackend-production.up.railway.app/alunos/criar', updateAluno)
     .finally(() => alert('Cadastro realizado com sucesso!'));
 }
 
 window.deleteAlunoByEmail = async function deleteAlunoByEmail(email) {
-  await axios.delete(`https://mtools-adm-front-end-sodq.vercel.app/alunos/${email}`)
+  await axios.delete(`mtoolsadmbackend-production.up.railway.app/alunos/${email}`)
     .then(res => {
       email = res.data;
       return email;
@@ -311,7 +311,7 @@ window.tryLogin = async function tryLogin() {
     senha: senha,
   }
 
-  await axios.post(`https://mtools-adm-front-end-sodq.vercel.app/alunos/login`, obj)
+  await axios.post(`mtoolsadmbackend-production.up.railway.app/alunos/login`, obj)
     .then(async function (res) {
       authUser = await res.data;
       console.log(await res.data);
