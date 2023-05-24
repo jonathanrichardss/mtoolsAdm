@@ -649,7 +649,7 @@ window.checkHrefChange = function checkHrefChange() {
   let isLogado = window.validaUserIsLogado();
 
   if (!isLogado) {
-    location.href = "https://mtools-adm-front-end-sodq.vercel.app/login.html";
+    location.href = "/login.html";
     isDone = true;
     checkHrefChange();
     return;
