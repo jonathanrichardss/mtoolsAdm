@@ -651,3 +651,5 @@ window.checkHrefChange = function checkHrefChange() {
 }
 //NÃO COMENTAR OU MUDAR ESSA ESTRUTURA ACIMA
 checkHrefChange();
+
+
