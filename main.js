@@ -640,7 +640,7 @@ window.checkHrefChange = function checkHrefChange() {
   let isLogado = window.validaUserIsLogado();
 
   if (!isLogado && location.href !== 'cadastro.html') {
-    location.href = "https://mtools-adm.vercel.app/login.html";
+    location.href = "login.html";
     isDone = true;
   }
   if (isDone) {
