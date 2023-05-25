@@ -50,7 +50,7 @@ export const button_home_on_go_to_cad_usuarios = document.getElementById('go-cad
 export const button_home_on_go_to_sair = document.getElementById('go-sair');
 
 
-export const cadastro_href = "./Pages/cadastro.html";
+export const cadastro_href = "cadastro.html";
 export const index_href = "index.html";
 
 
@@ -522,7 +522,7 @@ window.goToPageAuth = async function goToPageAuth(page) {
   if (page !== '' || page !== null || page !== undefined) {
     location.href = page;
   } else {
-    location.href = "./Pages/login.html";
+    location.href = "login.html";
   }
 }
 
@@ -537,11 +537,11 @@ if (button_home_on_go_to_alunos != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_alunos.setAttribute('href', "./Pages/login.html");
+      button_home_on_go_to_alunos.setAttribute('href', "login.html");
       return;
     }
 
-    button_home_on_go_to_alunos.setAttribute('href', "./Pages/alunos.html");
+    button_home_on_go_to_alunos.setAttribute('href', "alunos.html");
   });
 
 }
@@ -552,11 +552,11 @@ if (button_home_on_go_to_home != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_alunos.setAttribute('href', "./Pages/login.html");
+      button_home_on_go_to_alunos.setAttribute('href', "login.html");
       return;
     }
 
-    button_home_on_go_to_home.setAttribute('href', "./Pages/home.html");
+    button_home_on_go_to_home.setAttribute('href', "home.html");
   });
 
 }
@@ -567,7 +567,7 @@ if (button_home_on_go_to_cad_alunos != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_cad_alunos.setAttribute('href', "./Pages/login.html");
+      button_home_on_go_to_cad_alunos.setAttribute('href', "login.html");
       return;
     }
 
@@ -582,11 +582,11 @@ if (button_home_on_go_to_alunos != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_alunos.setAttribute('href', "./Pages/login.html");
+      button_home_on_go_to_alunos.setAttribute('href', "login.html");
       return;
     }
 
-    button_home_on_go_to_alunos.setAttribute('href', "./Pages/alunos.html");
+    button_home_on_go_to_alunos.setAttribute('href', "alunos.html");
   });
 
 }
@@ -639,8 +639,8 @@ window.checkHrefChange = function checkHrefChange() {
   // Lógica a ser executada quando houver uma alteração em location.href
   let isLogado = window.validaUserIsLogado();
 
-  if (!isLogado && location.href !== './Pages/cadastro.html') {
-    location.href = "./Pages/login.html";
+  if (!isLogado && location.href !== 'cadastro.html') {
+    location.href = "login.html";
     isDone = true;
   }
   if (isDone) {
