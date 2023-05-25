@@ -334,7 +334,7 @@ if (login_button !== null) {
       console.log(authUser);
     } else {
       localStorage.setItem('token', tokenVal);
-      location.href = "home.html"
+      location.href = "https://mtools-adm-front-end-sodq.vercel.app/home.html"
     }
   }
 }
@@ -537,11 +537,11 @@ if (button_home_on_go_to_alunos != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_alunos.setAttribute('href', "login.html");
+      button_home_on_go_to_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/login.html");
       return;
     }
 
-    button_home_on_go_to_alunos.setAttribute('href', "alunos.html");
+    button_home_on_go_to_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/alunos.html");
   });
 
 }
@@ -552,11 +552,11 @@ if (button_home_on_go_to_home != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_alunos.setAttribute('href', "login.html");
+      button_home_on_go_to_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/login.html");
       return;
     }
 
-    button_home_on_go_to_home.setAttribute('href', "home.html");
+    button_home_on_go_to_home.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/home.html");
   });
 
 }
@@ -567,11 +567,11 @@ if (button_home_on_go_to_cad_alunos != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_cad_alunos.setAttribute('href', "login.html");
+      button_home_on_go_to_cad_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/login.html");
       return;
     }
 
-    button_home_on_go_to_cad_alunos.setAttribute('href', "index.html");
+    button_home_on_go_to_cad_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/index.html");
   });
 
 }
@@ -582,11 +582,11 @@ if (button_home_on_go_to_alunos != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_alunos.setAttribute('href', "login.html");
+      button_home_on_go_to_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/login.html");
       return;
     }
 
-    button_home_on_go_to_alunos.setAttribute('href', "alunos.html");
+    button_home_on_go_to_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/alunos.html");
   });
 
 }
@@ -639,8 +639,8 @@ window.checkHrefChange = function checkHrefChange() {
   // Lógica a ser executada quando houver uma alteração em location.href
   let isLogado = window.validaUserIsLogado();
 
-  if (!isLogado && location.href !== 'cadastro.html') {
-    location.href = "login.html";
+  if (!isLogado && location.href !== 'https://mtools-adm-front-end-sodq.vercel.app/cadastro.html') {
+    location.href = "https://mtools-adm-front-end-sodq.vercel.app/login.html";
     isDone = true;
   }
   if (isDone) {
