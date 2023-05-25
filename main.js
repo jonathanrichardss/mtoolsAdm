@@ -50,8 +50,8 @@ export const button_home_on_go_to_cad_usuarios = document.getElementById('go-cad
 export const button_home_on_go_to_sair = document.getElementById('go-sair');
 
 
-export const cadastro_href = "https://mtools-adm-front-end-sodq.vercel.app/cadastro.html";
-export const index_href = "https://mtools-adm-front-end-sodq.vercel.app/index.html";
+export const cadastro_href = "cadastro.html";
+export const index_href = "index.html";
 
 
 export const cadastro_container = document.getElementById('cadastro-container');
@@ -195,7 +195,7 @@ window.createAlunos = async function createAlunos() {
   console.log('Passou por aqui')
   console.log(newAluno);
 
-  await axios.post('https://mtools-adm-front-end-sodq.vercel.app/alunos/criar', newAluno)
+  await axios.post('https://mtoolsadmbackend-production.up.railway.app/alunos/criar', newAluno)
     .then(alert('Cadastro realizado com sucesso!'))
     .finally(location.href = "alunos.html"
     );
@@ -243,7 +243,7 @@ window.createUsuarios = async function createUsuarios() {
 
   //conf.show();
 
-  axios.post('https://mtools-adm-front-end-sodq.vercel.app/usuarios/criar', novoUsuario)
+  axios.post('https://mtoolsadmbackend-production.up.railway.app/usuarios/criar', novoUsuario)
     .then(alert('Cadastro realizado com sucesso!'))
     .finally(window.location.href = "login.html");
 }
@@ -256,7 +256,7 @@ if (cadBtnUsuario !== null) {
 
 
 window.getAlunos = async function getAlunos() {
-  await axios.get('https://mtools-adm-front-end-sodq.vercel.app/alunos')
+  await axios.get('https://mtoolsadmbackend-production.up.railway.app/alunos')
     .then(res => {
       listaAlunos = res.data;
       return listaAlunos;
@@ -265,7 +265,7 @@ window.getAlunos = async function getAlunos() {
 }
 
 window.getAlunoByEmail = async function getAlunoByEmail(email) {
-  await axios.get(`https://mtools-adm-front-end-sodq.vercel.app/alunos/${email}`)
+  await axios.get(`https://mtoolsadmbackend-production.up.railway.app/alunos/${email}`)
     .then(res => {
       aluno = res.data;
       return res.data;
@@ -282,12 +282,12 @@ window.updateAlunoByEmail = async function updateAlunoByEmail(obj) {
 
   //conf.show();
 
-  await axios.post('https://mtools-adm-front-end-sodq.vercel.app/alunos/criar', updateAluno)
+  await axios.post('https://mtoolsadmbackend-production.up.railway.app/alunos/criar', updateAluno)
     .finally(() => alert('Cadastro realizado com sucesso!'));
 }
 
 window.deleteAlunoByEmail = async function deleteAlunoByEmail(email) {
-  await axios.delete(`https://mtools-adm-front-end-sodq.vercel.app/alunos/${email}`)
+  await axios.delete(`https://mtoolsadmbackend-production.up.railway.app/alunos/${email}`)
     .then(res => {
       email = res.data;
       return email;
@@ -311,7 +311,7 @@ window.tryLogin = async function tryLogin() {
     senha: senha,
   }
 
-  await axios.post(`https://mtools-adm-front-end-sodq.vercel.app/alunos/login`, obj)
+  await axios.post(`https://mtoolsadmbackend-production.up.railway.app/alunos/login`, obj)
     .then(async function (res) {
       authUser = await res.data;
       console.log(await res.data);
@@ -541,11 +541,11 @@ if (button_home_on_go_to_alunos != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/login.html");
+      button_home_on_go_to_alunos.setAttribute('href', "login.html");
       return;
     }
 
-    button_home_on_go_to_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/alunos.html");
+    button_home_on_go_to_alunos.setAttribute('href', "alunos.html");
   });
 
 }
@@ -556,11 +556,11 @@ if (button_home_on_go_to_home != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/login.html");
+      button_home_on_go_to_alunos.setAttribute('href', "login.html");
       return;
     }
 
-    button_home_on_go_to_home.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/home.html");
+    button_home_on_go_to_home.setAttribute('href', "home.html");
   });
 
 }
@@ -571,11 +571,11 @@ if (button_home_on_go_to_cad_alunos != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_cad_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/login.html");
+      button_home_on_go_to_cad_alunos.setAttribute('href', "login.html");
       return;
     }
 
-    button_home_on_go_to_cad_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/index.html");
+    button_home_on_go_to_cad_alunos.setAttribute('href', "index.html");
   });
 
 }
@@ -586,11 +586,11 @@ if (button_home_on_go_to_alunos != null) {
     let isLogado = window.validaUserIsLogado();
 
     if (!isLogado) {
-      button_home_on_go_to_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/login.html");
+      button_home_on_go_to_alunos.setAttribute('href', "login.html");
       return;
     }
 
-    button_home_on_go_to_alunos.setAttribute('href', "https://mtools-adm-front-end-sodq.vercel.app/alunos.html");
+    button_home_on_go_to_alunos.setAttribute('href', "alunos.html");
   });
 
 }
@@ -618,11 +618,6 @@ function limpaCampos() {
     })
 }
 
-// window.addEventListener('beforeunload', function () {
-//   if (location.href == cadastro_href || this.location.href == index_href) {
-//     limpaCampos();
-//   }
-// });
 
 window.addEventListener('pagehide', function () {
   if (location.href == cadastro_href || this.location.href == index_href) {
@@ -648,13 +643,15 @@ window.checkHrefChange = function checkHrefChange() {
   // Lógica a ser executada quando houver uma alteração em location.href
   let isLogado = window.validaUserIsLogado();
 
-  if (!isLogado) {
-    location.href = "https://mtools-adm-front-end-sodq.vercel.app/login.html";
+  if (!isLogado && location.href !== 'cadastro.html') {
+    location.href = "login.html";
     isDone = true;
+  }
+  if (isDone) {
     checkHrefChange();
+    //alert(isDone);
     return;
   }
 }
 //NÃO COMENTAR OU MUDAR ESSA ESTRUTURA ACIMA
-
 checkHrefChange();
