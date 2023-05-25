@@ -128,10 +128,6 @@ export function setCurso(obj) {
     horarioaula: ''
   };
 
-  // if (obj !== null) {
-  //   newCursoCad.idaluno = obj.id;
-  // }
-
   let materia = newCursoCad.materia = document.getElementById('cursos').value;
   newCursoCad.diasemana = document.getElementById('diasemana').value;
 
