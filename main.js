@@ -55,7 +55,9 @@ export const index_href = "index.html";
 
 
 export const cadastro_container = document.getElementById('cadastro-container');
+export const kkk = document.getElementById('kkk');
 
+console.log(kkk)
 
 export function rowFactory() {
   celulas.forEach(function (celula, indice) {
@@ -522,7 +524,7 @@ window.goToPageAuth = async function goToPageAuth(page) {
   if (page !== '' || page !== null || page !== undefined) {
     location.href = page;
   } else {
-    location.href = "login.html";
+    location.href = "/pages/login.html";
   }
 }
 
@@ -639,8 +641,8 @@ window.checkHrefChange = function checkHrefChange() {
   // Lógica a ser executada quando houver uma alteração em location.href
   let isLogado = window.validaUserIsLogado();
 
-  if (!isLogado && location.href !== 'cadastro.html') {
-    location.href = "login.html";
+  if (!isLogado && location.href !== './pages/cadastro.html') {
+    location.href = "/pages/login.html";
     isDone = true;
   }
   if (isDone) {
@@ -655,30 +657,36 @@ checkHrefChange();
 
 //ROUTER
 
-export const route = (event) => {
-    event = event || window.event;
-    event.preventDefault();
-    window.history.pushState({}, "", event.target.href);
-    handleLocation();
-};
+// export const route = (event) => {
+//     event = event || window.event;
+//     event.preventDefault();
+//     window.history.pushState({}, "", event.target.href);
+//     handleLocation();
+// };
 
-export const routes = {
-    404: "/pages/404.html",
-    "/": "/pages/index.html",
-    "/home": "/pages/home.html",
-    "/login": "/pages/login.html",
-    "/alunos": "/pages/alunos.html",
-    "/cadastro": "/pages/cadastro.html",
-};
 
-export const handleLocation = async () => {
-    const path = window.location.pathname;
-    const route = routes[path] || routes[404];
-    const html = await fetch(route).then((data) => data.text());
-    document.getElementById("app").innerHTML = html;
-};
+// export const routes = {
+//     404: "/pages/404.html",
+//     "/": "./pages/index.html",
+//     "/home": "./pages/home.html",
+//     "/login": "./pages/login.html",
+//     "/alunos": "./pages/alunos.html",
+//     "/cadastro": "./pages/cadastro.html",
+// };
 
-window.onpopstate = handleLocation;
-window.route = route;
 
-handleLocation();
+// export const handleLocation = async () => {
+//     const path = window.location.pathname;
+//     const route = routes[path] || routes[404];
+//     const html = await fetch(route).then((data) => data.text());
+//     //document.getElementById("app").innerHTML = html;
+// };
+
+// console.log(document.getElementById("kkk") + 'OI');
+
+
+
+// window.onpopstate = handleLocation;
+// window.route = route;
+
+// handleLocation();
